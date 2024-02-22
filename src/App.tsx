@@ -5,7 +5,7 @@ function App() {
   const [value, setValue] = useState('');
   const [result, SetResult] = useState('');
 
-  const check = (e: React.FormEvent<HTMLFormElement>) => {
+  const check = (e) => {
     const getRandomInt = Math.floor(Math.random() * 10);
     console.log(getRandomInt);
     e.preventDefault();
