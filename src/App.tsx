@@ -1,29 +1,38 @@
-import { useState } from 'react';
+import {useEffect, useState } from 'react';
 import './index.css';
 
 function App() {
+
+  const generateRandomNumber = () => {
+    return Math.floor(Math.random() * 100);
+  };
+
+
+    
   const [value, setValue] = useState('');
   const [result, SetResult] = useState('');
   const [hint, setHint] = useState('');
   const [tries, setTries] = useState(0);
-
+  const [random, setRandom] = useState(generateRandomNumber());
+  
+  
+  
   const check = (e) => {
-    const getRandomInt = Math.floor(Math.random() * 100);
-    console.log(getRandomInt);
     e.preventDefault();
     setTries(tries + 1);
     
     const inputValue = parseInt(value); // Convert input value to a number
-    if (inputValue === getRandomInt) {
+    if (inputValue === random) {
       console.log("Yeah, you did it!");
       SetResult(`Hurray! you guessed the number in ${tries} tries`);
       setTries(0);
       setHint("");
-    } else if (inputValue > getRandomInt) {
+      setRandom(generateRandomNumber())
+    } else if (inputValue > random) {
       console.log("Nuh uh ");
       SetResult("Answer is not correct");
       setHint("Too big");
-    } else if (inputValue < getRandomInt) {
+    } else if (inputValue < random) {
       console.log("Nuh uh ");
       SetResult("Answer is not correct");
       setHint("Too Small");
@@ -40,7 +49,7 @@ function App() {
       <div className="flex items-center justify-center text-clamp text-stone-200">
         <h1>Guess the Number</h1>
       </div>
-      <h3 className={`text-2xl flex justify-center items-center ${result === "Answer is not correct" ? 'text-red-500' : 'text-lime-400'}`}>
+      <h3 className={`text-clamps flex justify-center items-center ${result === "Answer is not correct" ? 'text-red-500' : 'text-lime-400'}`}>
         {result}
       </h3>
       <h5 className={`flex justify-center items-center ${hint == "Too big" ? 'text-red-700' :  'text-blue-600'}`}>{hint}</h5>
