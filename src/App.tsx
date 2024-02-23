@@ -39,7 +39,7 @@ function App() {
     } else {
       console.log("Nuh uh ");
       SetResult("Answer is not correct");
-      setHint("Tf you did");
+      setHint("Enter number nigga");
     }
   };
   
